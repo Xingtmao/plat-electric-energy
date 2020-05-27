@@ -1,0 +1,13 @@
+debug: true  #配置是否调试模式，如果打包发布的话，需要设置为false。
+server:
+  #${random.int[10000,19999]}
+  port: 8001
+spring:
+  cloud:
+    consul:
+      host: 192.168.10.128
+      port: 8500
+      discovery:
+        service-name: electricEnergy
+        tags: urlprefix-/${spring.application.name}
+        instance-id: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
